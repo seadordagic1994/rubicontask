@@ -4,7 +4,7 @@ Hello "Rubicon d.o.o". Here is the finished .NET Developer Assignment.
 
 Before you start testing the application, you will have to set up the connection string in "Web.config" file, so the database can be created on your SQL Server. (SQL Server Express will be ok)
 
-- In the //<connectionStrings//> tag, under "connectionString=" change the "Data Source=" and write your SQL Server instance name. I have used "Integrated Security=true" so I am not using username and password. If you need to enter username and password then at the end of "connectionString=" add "User id=;Password=;" with your autorization data. 
+- In the /<connectionStrings/> tag, under "connectionString=" change the "Data Source=" and write your SQL Server instance name. I have used "Integrated Security=true" so I am not using username and password. If you need to enter username and password then at the end of "connectionString=" add "User id=;Password=;" with your autorization data. 
   
 - I have used "Postman" to test the API. After calling any request that was in the Assigment (lets say: /api/posts) the database will be created automatically, and will be filled with some inital data. For nonGET requests use JSON(application/json) body format. 
 
