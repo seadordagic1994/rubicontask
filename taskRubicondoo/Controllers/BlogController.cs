@@ -21,6 +21,8 @@ namespace taskRubicondoo.Controllers
         [Route("api/posts/{slug}")]
         public IHttpActionResult GetSinglePost(string slug)
         {
+            if (ctx.blogPost.Where(x => x.slug == slug).SingleOrDefault() == null)
+                return BadRequest("Post does not exist");
             //viewPosts is a function that returns multiple posts with or without querystring, or a single post by slug (depends on parameters)
             return Ok(viewPosts(slug));
         }
@@ -135,7 +137,7 @@ namespace taskRubicondoo.Controllers
             if(slug == null)
             {
                 List<dynamic> posts = new List<dynamic>();
-                foreach (BlogPost postFromDb in tag == "" ? ctx.blogPost.OrderByDescending(x=> x.Id).ToList() : ctx.blogPostTag.Where(x=> x.Tag.tagName == tag).Select(x=> x.Post).ToList())
+                foreach (BlogPost postFromDb in tag == "" ? ctx.blogPost.OrderByDescending(x=> x.Id).ToList() : ctx.blogPostTag.Where(x=> x.Tag.tagName == tag).OrderByDescending(x => x.createdAt).Select(x=> x.Post).ToList())
                 {
                     posts.Add(new
                     {
